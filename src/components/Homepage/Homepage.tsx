@@ -78,7 +78,7 @@ const Homepage = (): JSX.Element => {
               name="md-url"
               autoComplete="off"
               id="md-url-submit"
-              placeholder="URL for MD File"
+              placeholder="URL or MD File"
               className="bg-gray-50 dark:bg-gray-800 w-full outline-none focus:outline-none active:outline-none"
             />
             <FileUploader handleFileUpload={handleFileUpload} />
@@ -120,7 +120,7 @@ const Homepage = (): JSX.Element => {
                 clipRule="evenodd"
               />
             </svg>
-            <span>LinkedIn Assessment Practice</span>
+            <span className="text-sm">LinkedIn Assessment Practice</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="animate-bounce ml-2 h-5 w-5"
