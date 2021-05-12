@@ -1,8 +1,11 @@
 {
+  "homepage": "http://wkm97.github.io/md2practice",
   "name": "md2practice",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.1.2",
+    "@tailwindui/react": "^0.1.1",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -10,16 +13,26 @@
     "@types/node": "^12.20.12",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",
+    "axios": "^0.21.1",
+    "formik": "^2.2.6",
+    "quiz-too": "^1.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-markdown": "^6.0.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-syntax-highlighter": "^15.4.3",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build:tailwind": "tailwindcss build src/css/index.css -o src/css/index.output.css",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js}\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,5 +52,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-syntax-highlighter": "^13.5.0",
+    "autoprefixer": "^9.8.6",
+    "eslint": "^7.26.0",
+    "gh-pages": "^3.1.0",
+    "postcss": "^7.0.35",
+    "prettier": "^2.3.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2"
   }
 }
