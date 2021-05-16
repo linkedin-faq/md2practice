@@ -1,8 +1,11 @@
 import { MdFileProcessor, Quiz } from "quiz-too";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router";
-import ChallengeComponent from "../Challenge/ChallengeComponent";
+// import ChallengeComponent from "../Challenge/ChallengeComponent";
+import ChallengeComponentV2 from "../Challenge/ChallengeComponentV2";
 import Navbar from "../common/Navbar/Navbar";
+
+import { ReactComponent as UpArrowIcon } from "./up-arrow.svg";
 
 const Practice = (): JSX.Element => {
   const history = useHistory();
@@ -15,7 +18,7 @@ const Practice = (): JSX.Element => {
     try {
       const mdFileProcessor = new MdFileProcessor(content);
       const practice = mdFileProcessor.getQuiz();
-      if (practice.getChallenges().length === 0) {
+      if (practice.getChallenges().size === 0) {
         throw Error("No Challenge Detected.");
       }
       setPractice(practice);
@@ -26,7 +29,6 @@ const Practice = (): JSX.Element => {
 
   useEffect(() => {
     if (location.state && location.state.inputType === "FILE") {
-      console.log(location.state);
       convertContentToPractice(location.state.content);
     } else {
       if (!encodedUrl) {
@@ -36,6 +38,11 @@ const Practice = (): JSX.Element => {
         fetch(url)
           .then((response) => response.text())
           .then((content) => {
+            const imagePath = url.split("/").slice(0, -1).join("/");
+            console.log(url, imagePath);
+            content = content
+              .replace(/^!.*\((?!http)/gm, `![imagepath](${imagePath}/`)
+              .replace("?raw=true", "");
             convertContentToPractice(content);
           })
           .catch(() => {
@@ -51,13 +58,14 @@ const Practice = (): JSX.Element => {
       <Navbar />
       <div className="flex-col justify-items-center pt-2 select-none">
         {practice
-          ? practice.getChallenges().map((item, idx) => {
-              return <ChallengeComponent key={idx} challenge={item} />;
+          ? Array.from(practice.getChallenges()).map(([idx, challenge]) => {
+              return <ChallengeComponentV2 key={idx} challenge={challenge} />;
             })
           : null}
-        {/* {quiz? <ChallengeComponent challenge={quiz.getChallenges()[8]} />: null}
-          {quiz? <ChallengeComponent challenge={quiz.getChallenges()[9]} />: null} */}
       </div>
+      <button onClick={()=>window.scrollTo({top:0,left:0,behavior:"smooth"})} className="bg-secondary-500 p-2 w-12 shadow rounded-full fixed bottom-5 right-5 focus:outline-none">
+        <UpArrowIcon className="fill-current text-white" />
+      </button>
     </div>
   );
 };

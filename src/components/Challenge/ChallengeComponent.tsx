@@ -21,7 +21,10 @@ const ChallengeComponent = (props: challengeProps): JSX.Element => {
   const explain = challenge.getExplanation();
 
   useEffect(() => {
-    if (selected !== undefined && challenge.getAnswers().includes(selected[0])) {
+    if (
+      selected !== undefined &&
+      challenge.getAnswers().includes(selected[0])
+    ) {
       setStatus(ChallengeStatus.CORRECT);
     } else if (selected !== undefined) {
       setStatus(ChallengeStatus.WRONG);
@@ -32,9 +35,21 @@ const ChallengeComponent = (props: challengeProps): JSX.Element => {
 
   return (
     <div className="block p-2 text-xs mx-10 my-4 md:text-base border rounded-lg shadow dark:bg-gray-800">
-      <Question question={challenge.getQuestion()} index={challenge.getIndex()} />
-      <SingleChoice challenge={challenge} status={status} onSelectedChange={(value) => setSelected(value)} />
-      {explain ? <ExplainCard explain={explain} expand={status !== ChallengeStatus.IDLE ? true : false} /> : null}
+      <Question
+        question={challenge.getQuestion()}
+        index={challenge.getIndex()}
+      />
+      <SingleChoice
+        challenge={challenge}
+        status={status}
+        onSelectedChange={(value) => setSelected(value)}
+      />
+      {explain ? (
+        <ExplainCard
+          explain={explain}
+          expand={status !== ChallengeStatus.IDLE ? true : false}
+        />
+      ) : null}
       {/* <button className="mt-2 p-2" onClick={()=>setSelected(undefined)}>REFRESH</button> */}
     </div>
   );
@@ -62,7 +77,9 @@ const ExplainCard = (props: { explain: string; expand: boolean }) => {
       leaveTo="opacity-0 scale-95"
     >
       <div className={`border-t-2 p-4 mt-4 select-text ${getClassname()}`}>
-        <p className="break-words text-gray-700 dark:text-gray-50 text-opacity-80">{explain}</p>
+        <p className="break-words text-gray-700 dark:text-gray-50 text-opacity-80">
+          {explain}
+        </p>
       </div>
     </Transition>
   );
@@ -86,7 +103,10 @@ const SingleChoice = (props: singleChoiceProps) => {
   // },[selected])
 
   const getFieldClassname = (idx: number): string => {
-    if (status !== ChallengeStatus.IDLE && challenge.getAnswers().includes(idx)) {
+    if (
+      status !== ChallengeStatus.IDLE &&
+      challenge.getAnswers().includes(idx)
+    ) {
       return "bg-gradient-to-r from-green-500 pointer-events-none";
     } else if (status === ChallengeStatus.WRONG && idx === selected) {
       return "bg-gradient-to-r from-red-500 pointer-events-none";
@@ -120,12 +140,21 @@ const SingleChoice = (props: singleChoiceProps) => {
       >
         {({ values, setValues }) => (
           <Form>
-            <div className="flex-col my-5" role="group" aria-labelledby="single-choices-group">
+            <div
+              className="flex-col my-5"
+              role="group"
+              aria-labelledby="single-choices-group"
+            >
               {choices.map((choice, idx) => {
                 const idxString = String(idx);
 
                 return (
-                  <div className={`flex items-center p-2 rounded-l-lg ${getFieldClassname(idx)}`} key={idx}>
+                  <div
+                    className={`flex items-center p-2 rounded-l-lg ${getFieldClassname(
+                      idx
+                    )}`}
+                    key={idx}
+                  >
                     <Field
                       type="radio"
                       name="selected"
@@ -162,29 +191,6 @@ const SingleChoice = (props: singleChoiceProps) => {
     </React.Fragment>
   );
 };
-
-// interface radioContentProps {
-//     valueName:string,
-//     value:string,
-//     content:string
-//     selected:string
-// }
-
-// const RadioContent = (props:radioContentProps) => {
-
-//     const {valueName, value, content, selected} = props;
-
-//     const [field, , helpers] = useField({ name: valueName, type: "radio", value: value });
-
-//     const { setValue } = helpers;
-
-//     return (
-//         <React.Fragment>
-//             <input {...field} checked={value === selected} type="radio"></input>
-//             <span className="ml-3 w-full" onClick={()=>{setValue(value)}}><MarkdownCustom content={content}/></span>
-//         </React.Fragment>
-//     );
-// };
 
 const Question = (props: { question: string; index: number }) => {
   const displayQuestion = "Q" + props.index + ". " + props.question;

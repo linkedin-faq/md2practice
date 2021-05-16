@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import { useHistory } from "react-router";
 import LinkedInAssessment from "./LinkedInAssessment";
 import Navbar from "../common/Navbar/Navbar";
@@ -8,12 +8,16 @@ import FileUploader from "./FileUploader";
 const Homepage = (): JSX.Element => {
   const history = useHistory();
   const [urlSubmit, setUrlSubmit] = useState<string>("");
-  const [inputType, setInputType] = useState<string>("");
 
   const handleMdUrlSubmit = () => {
     if (urlSubmit) {
-      setInputType("URL");
-      history.push(`/practice/${btoa(urlSubmit)}`, { content: "", inputType: "URL" });
+      history.push({
+        pathname: `/practice/${btoa(urlSubmit)}`,
+        state: {
+          content: "",
+          inputType: "URL",
+        },
+      });
     } else {
       alert("Key in URL");
     }
@@ -22,7 +26,6 @@ const Homepage = (): JSX.Element => {
   const handleFileUpload: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.files) {
       const file = e.target.files[0];
-      setInputType("FILE");
       setUrlSubmit(`File Selected: ${file.name}`);
       file.text().then((content) => {
         history.push({
@@ -51,58 +54,65 @@ const Homepage = (): JSX.Element => {
       <section className="mt-10">
         <div className="flex justify-around px-10">
           <div className="flex flex-col w-1/2 justify-center justify-items-center text-center">
-            <span className="text-md md:text-4xl lg:text-8xlmd:text-lg font-bold">Simple Practice Test Engine</span>
+            <span className="text-md md:text-4xl lg:text-8xlmd:text-lg font-bold">
+              Simple Practice Test Engine
+            </span>
             <span className="text-xs md:text-2xl lg:text-6xlmd:text-lg fond-semibold text-gray-400">
               Convert MD File to Q&amp;A for Practice
             </span>
           </div>
           <div className="flex justify-center justify-items-center text-center">
-            <img className="w-full h-full" src={QuestionnaireLogo} alt="questionnaire-logo" />
+            <img
+              className="w-full h-full"
+              src={QuestionnaireLogo}
+              alt="questionnaire-logo"
+            />
           </div>
         </div>
       </section>
 
       <section className="md:w-2/3 md:m-auto">
         <div className="flex flex-col mx-10 my-20 justify-center justify-items-center">
-          <div className="w-full h-10 pl-3 pr-2 bg-gray-50 dark:bg-gray-800 border-2 rounded-full flex justify-between items-center relative">
-            <input
-              onChange={(e) => setUrlSubmit(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleMdUrlSubmit();
-                }
-              }}
-              value={urlSubmit}
-              disabled={inputType === "FILE" ? true : false}
-              type="search"
-              name="md-url"
-              autoComplete="off"
-              id="md-url-submit"
-              placeholder="URL or MD File"
-              className="bg-gray-50 dark:bg-gray-800 w-full outline-none focus:outline-none active:outline-none"
-            />
-            <FileUploader handleFileUpload={handleFileUpload} />
-            <button
-              onClick={handleMdUrlSubmit}
-              type="submit"
-              aria-label="url-button"
-              className="ml-1 outline-none focus:outline-none active:outline-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+          <div className="flex">
+            <div className="w-full h-10 pl-3 pr-2 bg-gray-50 dark:bg-gray-800 border-2 rounded-full flex justify-between items-center relative">
+              <input
+                onChange={(e) => setUrlSubmit(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleMdUrlSubmit();
+                  }
+                }}
+                value={urlSubmit}
+                type="search"
+                name="md-url"
+                autoComplete="off"
+                id="md-url-submit"
+                placeholder="URL or MD File Upload"
+                className="bg-gray-50 dark:bg-gray-800 w-full outline-none focus:outline-none active:outline-none"
+              />
+              <button
+                onClick={handleMdUrlSubmit}
+                type="submit"
+                aria-label="url-button"
+                className="ml-1 outline-none focus:outline-none active:outline-none"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <FileUploader handleFileUpload={handleFileUpload} />
           </div>
 
           <div className="text-lg uppercase text-center my-2">OR</div>
@@ -120,7 +130,7 @@ const Homepage = (): JSX.Element => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-sm">LinkedIn Assessment Practice</span>
+            <span className="text-xs md:text-sm">LinkedIn Assessment Practice</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="animate-bounce ml-2 h-5 w-5"

@@ -12,7 +12,10 @@ const Navbar = (): JSX.Element => {
 
   return (
     <div className="z-50 flex justify-between md:px-10 bg-gray-100 dark:bg-gray-900">
-      <button className="m-2 p-2 text-lg uppercase font-bold focus:outline-none" onClick={() => history.push("/")}>
+      <button
+        className="m-2 p-2 text-lg uppercase font-bold focus:outline-none"
+        onClick={() => history.push("/")}
+      >
         <span className="text-primary-500">MD2</span>Practice
       </button>
       <div className="m-2 my-4">

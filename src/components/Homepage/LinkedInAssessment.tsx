@@ -8,7 +8,6 @@ interface AssessmentInfo {
   questionCount: number;
 }
 
-
 const LinkedInAssessment = (props: { className?: string }): JSX.Element => {
   const [assessmentInfos, setAssessmentInfo] = useState<AssessmentInfo[]>();
   const [filterBy, setFilterBy] = useState<string>();
@@ -24,7 +23,9 @@ const LinkedInAssessment = (props: { className?: string }): JSX.Element => {
   };
 
   const getDisplayAssessment = () => {
-    return assessmentInfos?.filter((item) => item.title.toLowerCase().includes(filterBy || ""));
+    return assessmentInfos?.filter((item) =>
+      item.title.toLowerCase().includes(filterBy || "")
+    );
   };
 
   return (
@@ -53,7 +54,9 @@ const LinkedInAssessment = (props: { className?: string }): JSX.Element => {
   );
 };
 
-const AssessmentCard = (props: { assessmentInfo: AssessmentInfo }): JSX.Element => {
+const AssessmentCard = (props: {
+  assessmentInfo: AssessmentInfo;
+}): JSX.Element => {
   const title = props.assessmentInfo.title.replace(/\[|\]/g, "");
   const url = props.assessmentInfo.url;
 

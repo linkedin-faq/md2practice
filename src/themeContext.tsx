@@ -52,5 +52,9 @@ export const ThemeProvider = ({ children }: Props): JSX.Element => {
     rawSetTheme(theme);
   }, [theme]);
 
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
