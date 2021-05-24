@@ -1,7 +1,7 @@
 {
   "homepage": "http://wkm97.github.io/md2practice",
   "name": "md2practice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
@@ -14,8 +14,7 @@
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",
     "axios": "^0.21.1",
-    "formik": "^2.2.6",
-    "quiz-too": "^1.0.6",
+    "immutable": "*",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.2",
@@ -54,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.169",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-syntax-highlighter": "^13.5.0",
     "autoprefixer": "^9.8.6",

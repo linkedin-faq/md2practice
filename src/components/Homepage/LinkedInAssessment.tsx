@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { githubLinkedinSource } from "quiz-too";
+import { githubLinkedinSource } from "../../quiz-too";
 import { Link } from "react-router-dom";
 
 interface AssessmentInfo {

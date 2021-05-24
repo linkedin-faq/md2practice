@@ -1,3 +1,4 @@
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 /* Use `…/dist/cjs/…` if you’re not in ESM! */
@@ -30,4 +31,4 @@ const MarkdownCustom = (props: Props): JSX.Element => {
   return <ReactMarkdown components={components} children={props.content} />;
 };
 
-export default MarkdownCustom;
+export default React.memo(MarkdownCustom);

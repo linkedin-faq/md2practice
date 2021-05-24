@@ -115,8 +115,8 @@ const Homepage = (): JSX.Element => {
             <FileUploader handleFileUpload={handleFileUpload} />
           </div>
 
-          <div className="text-lg uppercase text-center my-2">OR</div>
-          <div className="border border-b-2 shadow-md border-primary-700"></div>
+          <div className="text-lg uppercase text-center my-2 pb-2 border-b-2 border-primary-700">OR</div>
+          {/* <div className="border border-b-2 shadow-md border-primary-700"></div> */}
           <div className="mt-4 font-bold flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,9 @@ const Homepage = (): JSX.Element => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-xs md:text-sm">LinkedIn Assessment Practice</span>
+            <span className="text-xs md:text-sm">
+              LinkedIn Assessment Practice
+            </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="animate-bounce ml-2 h-5 w-5"
