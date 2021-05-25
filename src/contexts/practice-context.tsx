@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Quiz, ChallengeStatus } from "../quiz-too";
-import { Map } from "immutable";
+import { OrderedMap } from "immutable";
 
 type Response = {
   status: ChallengeStatus;
@@ -14,7 +14,7 @@ type Action = {
 };
 type Dispatch = (action: Action) => void;
 
-type State = { practice: Quiz | null; session: Map<number, Response> };
+type State = { practice: Quiz | null; session: OrderedMap<number, Response> };
 
 type PracticeProviderProps = { children: React.ReactNode; practice: Quiz }; //assessment:{ assessmentInfo: AssessmentInfo, questionSets: QuestionSet[] }}
 
@@ -85,7 +85,7 @@ const practiceReducer = (state: State, action: Action) => {
 };
 
 const PracticeProvider = ({ children, practice }: PracticeProviderProps) => {
-  let initialSession = Map<number, Response>();
+  let initialSession = OrderedMap<number, Response>();
   practice.getChallenges().forEach(
     (item, idx) =>
       (initialSession = initialSession.set(idx, {
@@ -129,4 +129,6 @@ const usePracticeDispatch = () => {
   return context;
 };
 
-export { PracticeProvider, usePracticeState, usePracticeDispatch };
+export { PracticeProvider, usePracticeState, usePracticeDispatch };  
+export type { Response };
+
