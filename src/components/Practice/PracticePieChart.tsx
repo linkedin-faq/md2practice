@@ -55,7 +55,7 @@ const PracticePieChart = (props: Props) => {
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
-        {`${(percent * 100).toFixed(0)}% [${data[index].value}]`}
+        {`${(percent * 100).toFixed(0)}%[${data[index].value}]`}
       </text>
     );
   };

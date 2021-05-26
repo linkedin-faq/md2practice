@@ -29,7 +29,7 @@ const ChallengeComponent = (props: Props): JSX.Element => {
     if (challengeStatus === ChallengeStatus.IDLE) {
       switch (challengeType) {
         case ChallengeType.SINGLE:
-          setSelected(selected.set(valueSelected, true));
+          setSelected(initial.set(valueSelected, true));
           break;
         case ChallengeType.MULTIPLE:
           setSelected((prev) =>

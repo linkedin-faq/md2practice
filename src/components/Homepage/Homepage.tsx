@@ -54,10 +54,10 @@ const Homepage = (): JSX.Element => {
       <section className="mt-10">
         <div className="flex justify-around px-10">
           <div className="flex flex-col w-1/2 justify-center justify-items-center text-center">
-            <span className="text-md md:text-4xl lg:text-8xlmd:text-lg font-bold">
+            <span className="text-md md:text-4xl lg:text-6xl font-bold">
               Simple Practice Test Engine
             </span>
-            <span className="text-xs md:text-2xl lg:text-6xlmd:text-lg fond-semibold text-gray-400">
+            <span className="text-xs md:text-2xl lg:text-4xl fond-semibold text-gray-400">
               Convert MD File to Q&amp;A for Practice
             </span>
           </div>
@@ -132,9 +132,12 @@ const Homepage = (): JSX.Element => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-xs md:text-sm">
-              LinkedIn Assessment Practice
-            </span>
+            <a className="text-xs sm:hidden font-bold" target="_blank" rel="noreferrer" href="https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes">
+              LinkedIn Assessment
+            </a>
+            <a className="hidden text-sm sm:block font-bold hover:underline" target="_blank" rel="noreferrer" href="https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes">
+              LinkedIn Assessment Practice [Click Me For Source]
+            </a>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="animate-bounce ml-2 h-5 w-5"

@@ -29,11 +29,11 @@ const MoreInformation = (props: Props) => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-2">
       <HomepageButton />
       <AccuracyBoard sessionData={sessionData} />
-      <div className="p-4 overflow-y-scroll no-scrollbar h-60">
-        <div className="grid grid-flow-row-dense grid-cols-6 md:grid-cols-9 xl:grid-cols-12 gap-4">
+      <div className="p-1 overflow-y-scroll no-scrollbar h-60">
+        <div className="grid grid-flow-row-dense grid-cols-5 md:grid-cols-9 xl:grid-cols-12 gap-4">
           {sessionData.entrySeq().map(([key, value]) => {
             return (
               <span
@@ -81,7 +81,7 @@ const AccuracyBoard = (props: DisplayBoardProps) => {
     return (
       <>
         {pieTotal !== 0 ? (
-          <div className="h-60">
+          <div className="h-40 md:60">
             <PracticePieChart data={pieData} />
           </div>
         ) : (
@@ -93,7 +93,7 @@ const AccuracyBoard = (props: DisplayBoardProps) => {
 
   return (
     <div className="flex mt-5 justify-around ">
-      <div className="w-full md:w-2/3 ">
+      <div className="w-full md:w-2/3">
         <div className="md:hidden p-1 font-bold">FINISHED: <span className="font-normal">{pieTotal}</span></div>
         <div className="md:hidden p-1 font-bold">IDLE: <span className="font-normal">{idleCount}</span></div>
         <PieDisplay/>

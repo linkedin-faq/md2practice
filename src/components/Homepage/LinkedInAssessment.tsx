@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { githubLinkedinSource } from "../../quiz-too";
 import { Link } from "react-router-dom";
+import {ReactComponent as SampleFileIcon} from "./sample-file.svg";
 
 interface AssessmentInfo {
   title: string;
@@ -9,12 +10,15 @@ interface AssessmentInfo {
 }
 
 const LinkedInAssessment = (props: { className?: string }): JSX.Element => {
+  
   const [assessmentInfos, setAssessmentInfo] = useState<AssessmentInfo[]>();
   const [filterBy, setFilterBy] = useState<string>();
 
   useEffect(() => {
-    githubLinkedinSource.getAssessmentInfos().then((item) => {
-      setAssessmentInfo(item);
+    const excludeTitle = ["[Adobe-Acrobat]", "[Microsoft Access]", "[Microsoft Outlook]", "[QuickBooks]"]
+    githubLinkedinSource.getAssessmentInfos().then((assessments) => {
+      const result = assessments.filter(item=>!excludeTitle.includes(item.title))
+      setAssessmentInfo(result);
     });
   }, []);
 
@@ -66,12 +70,16 @@ const AssessmentCard = (props: {
   // }
 
   return (
-    <Link to={`/practice/${btoa(url)}`}>
-      <div className="p-2 m-1 bg-secondary-500 dark:bg-gray-800 font-bold text-gray-100 rounded-sm shadow text-sm flex justify-between">
-        <span>{title}</span>
-        {/* <span className="text-gray-300">{questionCount}</span> */}
+    <div className="flex content-center">
+    <Link className="w-full" to={`/practice/${btoa(url)}`}>
+      <div className="p-2 m-1 bg-secondary-500 dark:bg-gray-800 font-bold text-gray-100 rounded-sm shadow text-xs sm:text-sm">
+        <p>{title}</p>
       </div>
     </Link>
+    <a className="hidden sm:inline content-center" target="_blank" rel="noreferrer" href={url}>
+      <SampleFileIcon className="p-2 m-1 bg-secondary-500 dark:bg-gray-800 font-bold fill-current text-gray-100 rounded-sm shadow text-xs"/>
+    </a>
+    </div>
   );
 };
 export default LinkedInAssessment;
