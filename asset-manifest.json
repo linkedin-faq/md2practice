@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/md2practice/static/css/main.285bc547.chunk.css",
-    "main.js": "/md2practice/static/js/main.50818d78.chunk.js",
-    "main.js.map": "/md2practice/static/js/main.50818d78.chunk.js.map",
-    "runtime-main.js": "/md2practice/static/js/runtime-main.26c46b37.js",
-    "runtime-main.js.map": "/md2practice/static/js/runtime-main.26c46b37.js.map",
-    "static/js/2.9b037400.chunk.js": "/md2practice/static/js/2.9b037400.chunk.js",
-    "static/js/2.9b037400.chunk.js.map": "/md2practice/static/js/2.9b037400.chunk.js.map",
-    "static/js/3.e1afb261.chunk.js": "/md2practice/static/js/3.e1afb261.chunk.js",
-    "static/js/3.e1afb261.chunk.js.map": "/md2practice/static/js/3.e1afb261.chunk.js.map",
+    "main.css": "/md2practice/static/css/main.b70292eb.chunk.css",
+    "main.js": "/md2practice/static/js/main.d583470b.chunk.js",
+    "main.js.map": "/md2practice/static/js/main.d583470b.chunk.js.map",
+    "runtime-main.js": "/md2practice/static/js/runtime-main.581ad064.js",
+    "runtime-main.js.map": "/md2practice/static/js/runtime-main.581ad064.js.map",
+    "static/js/2.6110a953.chunk.js": "/md2practice/static/js/2.6110a953.chunk.js",
+    "static/js/2.6110a953.chunk.js.map": "/md2practice/static/js/2.6110a953.chunk.js.map",
+    "static/js/3.5dfbf9e5.chunk.js": "/md2practice/static/js/3.5dfbf9e5.chunk.js",
+    "static/js/3.5dfbf9e5.chunk.js.map": "/md2practice/static/js/3.5dfbf9e5.chunk.js.map",
     "index.html": "/md2practice/index.html",
-    "static/css/main.285bc547.chunk.css.map": "/md2practice/static/css/main.285bc547.chunk.css.map",
-    "static/js/2.9b037400.chunk.js.LICENSE.txt": "/md2practice/static/js/2.9b037400.chunk.js.LICENSE.txt",
+    "static/css/main.b70292eb.chunk.css.map": "/md2practice/static/css/main.b70292eb.chunk.css.map",
+    "static/js/2.6110a953.chunk.js.LICENSE.txt": "/md2practice/static/js/2.6110a953.chunk.js.LICENSE.txt",
     "static/media/fileUploaderIcon.8f4f1714.svg": "/md2practice/static/media/fileUploaderIcon.8f4f1714.svg",
     "static/media/homepage.94973ecd.svg": "/md2practice/static/media/homepage.94973ecd.svg",
     "static/media/menu.d45d2a25.svg": "/md2practice/static/media/menu.d45d2a25.svg",
-    "static/media/questionnaire.da1f0384.svg": "/md2practice/static/media/questionnaire.da1f0384.svg"
+    "static/media/questionnaire.da1f0384.svg": "/md2practice/static/media/questionnaire.da1f0384.svg",
+    "static/media/sample-file.8c3ce22a.svg": "/md2practice/static/media/sample-file.8c3ce22a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.26c46b37.js",
-    "static/js/2.9b037400.chunk.js",
-    "static/css/main.285bc547.chunk.css",
-    "static/js/main.50818d78.chunk.js"
+    "static/js/runtime-main.581ad064.js",
+    "static/js/2.6110a953.chunk.js",
+    "static/css/main.b70292eb.chunk.css",
+    "static/js/main.d583470b.chunk.js"
   ]
 }
