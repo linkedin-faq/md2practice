@@ -48,7 +48,7 @@ function App(): JSX.Element {
         onAccept={handleAcceptCookie}
         onDecline={handleDeclineCookie}
       >
-        This website uses cookies to count page views for motivation.
+        This website uses cookies to count page views for motivation. Close for better experiences.
       </CookieConsent>
     </div>
   );
