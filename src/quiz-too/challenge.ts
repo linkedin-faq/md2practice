@@ -56,7 +56,7 @@ export class Challenge {
   public setChoices(newChoices: string[]): void {
     this.choices = newChoices;
   }
-  
+
   public getAnswers(): number[] {
     return this.answers;
   }

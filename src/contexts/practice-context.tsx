@@ -129,6 +129,5 @@ const usePracticeDispatch = () => {
   return context;
 };
 
-export { PracticeProvider, usePracticeState, usePracticeDispatch };  
+export { PracticeProvider, usePracticeState, usePracticeDispatch };
 export type { Response };
-

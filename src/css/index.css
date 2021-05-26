@@ -22,8 +22,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @variants responsive {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  }
+}
+
 @layer base {
     body {
         @apply bg-gray-100 text-gray-900 font-mono dark:bg-gray-900 dark:text-gray-100
     }
 }
+

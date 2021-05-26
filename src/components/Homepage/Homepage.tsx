@@ -115,7 +115,9 @@ const Homepage = (): JSX.Element => {
             <FileUploader handleFileUpload={handleFileUpload} />
           </div>
 
-          <div className="text-lg uppercase text-center my-2 pb-2 border-b-2 border-primary-700">OR</div>
+          <div className="text-lg uppercase text-center my-2 pb-2 border-b-2 border-primary-700">
+            OR
+          </div>
           {/* <div className="border border-b-2 shadow-md border-primary-700"></div> */}
           <div className="mt-4 font-bold flex justify-center">
             <svg

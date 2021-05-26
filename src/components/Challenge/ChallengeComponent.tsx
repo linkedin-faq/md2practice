@@ -1,8 +1,4 @@
-import {
-  Challenge,
-  ChallengeStatus,
-  ChallengeType,
-} from "../../quiz-too";
+import { Challenge, ChallengeStatus, ChallengeType } from "../../quiz-too";
 import React, { useState } from "react";
 import MarkdownCustom from "./MarkdownCustom";
 import {

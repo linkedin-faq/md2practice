@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const defaultTheme = "light";
+const defaultTheme = "dark";
 
 interface Props {
   //   initialTheme: string;
