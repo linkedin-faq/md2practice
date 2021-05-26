@@ -50,9 +50,11 @@ const LinkedInAssessment = (props: { className?: string }): JSX.Element => {
       </div>
 
       <div id="linkedin-assessment-lists" className="mt-4">
+        <ul>
         {getDisplayAssessment()?.map((item, idx) => {
-          return <AssessmentCard key={idx} assessmentInfo={item} />;
+          return <li key={idx}><AssessmentCard assessmentInfo={item} /></li>;
         })}
+        </ul>
       </div>
     </div>
   );
@@ -70,14 +72,14 @@ const AssessmentCard = (props: {
   // }
 
   return (
-    <div className="flex content-center">
-    <Link className="w-full" to={`/practice/${btoa(url)}`}>
+    <div className="flex items-center">
+    <Link className="w-full h-full" to={`/practice/${btoa(url)}`}>
       <div className="p-2 m-1 bg-secondary-500 dark:bg-gray-800 font-bold text-gray-100 rounded-sm shadow text-xs sm:text-sm">
         <p>{title}</p>
       </div>
     </Link>
     <a className="hidden sm:inline content-center" target="_blank" rel="noreferrer" href={url}>
-      <SampleFileIcon className="p-2 m-1 bg-secondary-500 dark:bg-gray-800 font-bold fill-current text-gray-100 rounded-sm shadow text-xs"/>
+      <SampleFileIcon className="w-10 h-10 p-1 m-1 bg-secondary-500 dark:bg-gray-800 font-bold fill-current text-gray-100 rounded-sm shadow text-xs"/>
     </a>
     </div>
   );
