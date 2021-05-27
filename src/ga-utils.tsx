@@ -12,7 +12,9 @@ export const initGA = (id: string) => {
     ReactGA.initialize(id)
   }
   const hashedPath = window.location.hash.replace("#","").replace("/practice/","")
-  console.log(hashedPath)
-  const pathname = window.location.pathname + " - " + atob(hashedPath)
-  ReactGA.pageview(pathname);
+  if(hashedPath === "/"){
+    ReactGA.pageview(window.location.pathname)
+  }else{
+    ReactGA.pageview(`${window.location.pathname} - ${atob(hashedPath)}`);
+  }
 };
