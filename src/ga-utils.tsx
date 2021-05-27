@@ -11,10 +11,12 @@ export const initGA = (id: string) => {
   }else if(process.env.NODE_ENV === "production"){
     ReactGA.initialize(id)
   }
-  const hashedPath = window.location.hash.replace("#","").replace("/practice/","")
-  if(hashedPath === "/"){
-    ReactGA.pageview(window.location.pathname)
+  const pathname = window.location.pathname.replace(/\/$/, "")
+  const urlMode = window.location.hash.match(/practice\/.*/)
+  if(urlMode !== null){
+    const encodedUrl = window.location.hash.replace(/#\/practice\//,"")
+    ReactGA.pageview(`${pathname} - ${atob(encodedUrl)}`)
   }else{
-    ReactGA.pageview(`${window.location.pathname} - ${atob(hashedPath)}`);
+    ReactGA.pageview(pathname);
   }
 };
