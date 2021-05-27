@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/md2practice/static/css/main.d91d43e1.chunk.css",
-    "main.js": "/md2practice/static/js/main.623c1ae5.chunk.js",
-    "main.js.map": "/md2practice/static/js/main.623c1ae5.chunk.js.map",
+    "main.js": "/md2practice/static/js/main.81c3b5f8.chunk.js",
+    "main.js.map": "/md2practice/static/js/main.81c3b5f8.chunk.js.map",
     "runtime-main.js": "/md2practice/static/js/runtime-main.581ad064.js",
     "runtime-main.js.map": "/md2practice/static/js/runtime-main.581ad064.js.map",
     "static/js/2.27b60279.chunk.js": "/md2practice/static/js/2.27b60279.chunk.js",
@@ -22,6 +22,6 @@
     "static/js/runtime-main.581ad064.js",
     "static/js/2.27b60279.chunk.js",
     "static/css/main.d91d43e1.chunk.css",
-    "static/js/main.623c1ae5.chunk.js"
+    "static/js/main.81c3b5f8.chunk.js"
   ]
 }
