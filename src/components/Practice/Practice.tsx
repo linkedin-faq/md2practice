@@ -1,144 +1,72 @@
-import React from 'react';
-import MarkdownContent from '../common/markdown-content';
+import React, { useState } from "react";
+import { usePracticeState } from "../../contexts/practice-context";
+import ChallengeComponent from "../Challenge/ChallengeComponent";
+import Modal from "../common/Modal/Modal";
+import Navbar from "../common/Navbar/Navbar";
+import MoreInformation from "./MoreInformation";
 
-// eslint-disable-next-line no-shadow
-export enum OptionStatus {
-  IDLE = 'idle',
-  SELECTED = 'selected',
-  CORRECT = 'correct',
-  WRONG = 'wrong'
-}
-export interface SelectionOption {
-  rawOption: string;
-  status: OptionStatus
-}
+import { ReactComponent as Menu } from "./menu.svg";
 
-// eslint-disable-next-line no-shadow
-export enum PracticeStatus {
-  IDLE = 'idle',
-  CORRECT = 'correct',
-  WRONG = 'wrong'
-}
-export interface PracticeParams {
-  rawQuestion: string;
-  selection: SelectionOption[];
-  answers: number[]
-  status: PracticeStatus
-}
+// interface Props {
+//   practice: Quiz;
+// }
 
-interface PracticeProps extends PracticeParams {
-  id: number;
-  baseImageURL?: string;
-  onSubmit: (id: number, selection: SelectionOption[]) => void;
-  onSelectionChange: (id: number, selection: SelectionOption[]) => void;
-}
+const Practice = (): JSX.Element => {
+  const statePractice = usePracticeState();
+  const { practice } = statePractice;
+  const [showModal, setShowModal] = useState(false);
+  const challengeRefs = practice
+    ?.getChallenges()
+    .reduce((acc: { [key: number]: React.RefObject<HTMLLIElement> }, value) => {
+      acc[value.getIndex()] = React.createRef();
+      return acc;
+    }, {});
 
-interface OptionProps {
-  optionId: number;
-  disabled: boolean;
-  optionStatus: OptionStatus
-  type: 'checkbox' | 'radio'
-  onChange: (optionId: number) => void
-}
-
-const Option: React.FC<OptionProps> = ({
-  onChange, optionId, children, optionStatus, type, disabled,
-}) => {
-  const getColorClassname = () => {
-    switch (optionStatus) {
-      case OptionStatus.CORRECT:
-        return 'bg-gradient-to-r from-green-800';
-      case OptionStatus.WRONG:
-        return 'bg-gradient-to-r from-red-800';
-      default:
-        return '';
+  const onClickItem = (id: number) => {
+    setShowModal(!showModal);
+    if (challengeRefs) {
+      window.scrollTo({
+        top: challengeRefs[id].current?.offsetTop,
+        behavior: "smooth",
+      });
     }
   };
 
-  const checked = optionStatus !== OptionStatus.IDLE;
-
-  const selectedStyle = checked ? 'rounded-l-full' : '';
-
   return (
-    <div className={`flex mb-2  ${disabled ? 'pointer-events-none' : ''} accent-secondary-dark-500`}>
-      <label className={`w-full p-2 flex items-center ${selectedStyle} ${getColorClassname()}`}>
-        <input
-          // disabled={disabled}
-          type={type}
-          onChange={() => onChange(optionId)}
-          aria-labelledby={`option-${optionId}`}
-          aria-describedby={`option-${optionId}`}
-          checked={checked}
-        />
-        <span className="pl-2 w-full overflow-x-auto">{children}</span>
-      </label>
-    </div>
-  );
-};
-
-const Practice:React.FC<PracticeProps> = ({
-  id, rawQuestion, selection, answers, status, onSubmit, onSelectionChange, baseImageURL,
-}) => {
-  const isMultiple = answers.length > 1;
-
-  const getButtonColor = () => {
-    switch (status) {
-      case PracticeStatus.CORRECT:
-        return 'bg-green-800';
-      case PracticeStatus.WRONG:
-        return 'bg-red-800';
-      default:
-        return 'bg-secondary-dark-700';
-    }
-  };
-
-  const handleRadioChange = (optionId: number) => {
-    const newSelection = selection.map((item, idx) => {
-      const newStatus = idx === optionId ? OptionStatus.SELECTED : OptionStatus.IDLE;
-      return { ...item, status: newStatus };
-    });
-    onSelectionChange(id, newSelection);
-  };
-
-  const handleCheckboxChange = (optionId: number) => {
-    const newSelection = [...selection];
-    const oldStatus = selection[optionId].status;
-    newSelection[optionId].status = oldStatus === OptionStatus.SELECTED
-      ? OptionStatus.IDLE : OptionStatus.SELECTED;
-    onSelectionChange(id, newSelection);
-  };
-
-  return (
-    <div className="mb-4 text-xs tablet:text-lg" data-testid="practice-component">
-      <div className="mb-2 overflow-x-auto" aria-label="question-container">
-        <MarkdownContent raw={rawQuestion} baseImageURL={baseImageURL} />
-      </div>
-      <div data-testid="selection-component">
-        {selection.map((item, idx) => (
-          <Option
-            // eslint-disable-next-line react/no-array-index-key
-            key={`option-${idx}`}
-            optionId={idx}
-            optionStatus={item.status}
-            type={answers.length > 1 ? 'checkbox' : 'radio'}
-            disabled={status !== PracticeStatus.IDLE}
-            onChange={isMultiple ? handleCheckboxChange : handleRadioChange}
-          >
-            <MarkdownContent raw={item.rawOption} baseImageURL={baseImageURL} />
-          </Option>
-        ))}
+    <div className="dark:text-gray-100">
+      <Navbar />
+      <div className="flex-col justify-items-center pt-2 select-none">
+        <ul>
+          {practice && challengeRefs
+            ? practice
+                .getChallenges()
+                .valueSeq()
+                .map((challenge) => (
+                  <li
+                    key={challenge.getIndex()}
+                    ref={challengeRefs[challenge.getIndex()]}
+                  >
+                    <ChallengeComponent challenge={challenge} />
+                  </li>
+                ))
+            : null}
+        </ul>
       </div>
       <button
-        data-testid="submit-button"
-        disabled={status !== PracticeStatus.IDLE}
-        className={`p-2  font-bold rounded-lg ${getButtonColor()}`}
-        type="button"
-        onClick={() => onSubmit(id, selection)}
+        // onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+        onClick={() => setShowModal(true)}
+        className="bg-secondary-500 p-3 w-12 shadow rounded-full fixed bottom-5 right-5 focus:outline-none"
       >
-        Check
+        <Menu className="fill-current text-white" />
       </button>
+      <Modal show={showModal} onShowChanged={() => setShowModal(!showModal)}>
+        <MoreInformation
+          sessionData={statePractice.session}
+          onClickItem={onClickItem}
+        />
+      </Modal>
     </div>
   );
 };
 
-export default Practice;
+export default React.memo(Practice);

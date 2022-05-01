@@ -1,65 +1,67 @@
 {
+  "homepage": "http://wkm97.github.io/md2practice",
   "name": "md2practice",
+  "version": "1.0.1",
   "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "eslint && jest"
-  },
   "dependencies": {
-    "@types/ramda": "^0.28.11",
-    "@use-gesture/react": "^10.2.11",
-    "axios": "^0.26.1",
-    "marked": "^4.0.14",
-    "ramda": "^0.28.0",
+    "@craco/craco": "^6.1.2",
+    "@tailwindui/react": "^0.1.1",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^12.20.12",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.4",
+    "axios": "^0.21.1",
+    "immutable": "*",
     "react": "^17.0.2",
-    "react-cookie-consent": "^7.4.1",
     "react-dom": "^17.0.2",
-    "react-error-boundary": "^3.1.4",
-    "react-ga4": "^1.4.1",
-    "react-highlight": "^0.14.0",
-    "react-markdown": "^8.0.3",
-    "react-router-dom": "6",
-    "react-spring": "^9.4.4",
-    "react-syntax-highlighter": "^15.5.0",
-    "recharts": "^2.1.9"
+    "react-markdown": "^6.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-syntax-highlighter": "^15.4.3",
+    "recharts": "^2.0.9",
+    "typescript": "^4.2.4",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "build:tailwind": "tailwindcss build src/css/index.css -o src/css/index.output.css",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js}\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "12.1.4",
-    "@testing-library/react-hooks": "^8.0.0",
-    "@testing-library/user-event": "^14.1.1",
-    "@types/chance": "^1.1.3",
-    "@types/jest": "^27.4.1",
-    "@types/js-cookie": "^3.0.2",
-    "@types/marked": "^4.0.3",
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.10",
-    "@types/react-syntax-highlighter": "^13.5.2",
-    "@typescript-eslint/eslint-plugin": "^5.20.0",
-    "@typescript-eslint/parser": "^5.21.0",
-    "@vitejs/plugin-react": "^1.3.1",
-    "autoprefixer": "^10.4.5",
-    "babel-jest": "^28.0.3",
-    "chance": "^1.1.8",
-    "eslint": "^8.14.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-import-resolver-typescript": "^2.7.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^26.1.5",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.5.0",
-    "jest": "^27.5.1",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24",
-    "ts-jest": "^27.1.4",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.5"
+    "@types/lodash": "^4.14.169",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-syntax-highlighter": "^13.5.0",
+    "autoprefixer": "^9.8.6",
+    "eslint": "^7.26.0",
+    "gh-pages": "^3.1.0",
+    "postcss": "^7.0.35",
+    "prettier": "^2.3.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2"
   }
 }

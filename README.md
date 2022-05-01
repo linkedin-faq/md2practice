@@ -1,2 +1,1 @@
-# MD2Practice
-Transform markdown to practice for exercise.
+# MD2Practice Create React App
