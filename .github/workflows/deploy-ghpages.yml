@@ -13,6 +13,7 @@ env:
 
 jobs:
   deploy:
+    environment: production
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     strategy:
