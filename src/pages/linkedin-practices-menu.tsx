@@ -38,7 +38,7 @@ const LinkedInPracticesMenuPage: React.FC = () => {
   const [filteredInfos, setFilteredInfos] = useState<LinkedInPracticeInfo[]>([]);
 
   const handleFilterOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = e.target.value;
+    const filterValue = e.target.value.toLowerCase();
     const filtered = infos.filter((item) => item.title.toLowerCase().includes(filterValue));
     setFilteredInfos(filtered);
   };
