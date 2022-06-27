@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@types/ramda": "^0.28.11",
-    "@use-gesture/react": "^10.2.11",
+    "@use-gesture/react": "^10.2.16",
     "axios": "^0.27.2",
     "marked": "^4.0.14",
     "ramda": "^0.28.0",
