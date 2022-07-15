@@ -33,11 +33,12 @@ interface PracticesProps {
     onSubmit: (id: number, selection: SelectionOption[]) => void;
     onSelectionChange: (id: number, selection: SelectionOption[]) => void;
     onResetPractices?: () => void;
+    onShuffleQuestions?: () => void;
 }
 
 export const Practices: React.FC<PracticesProps> = (
   {
-    data, baseImageURL, onSubmit, onSelectionChange, onResetPractices,
+    data, baseImageURL, onSubmit, onSelectionChange, onResetPractices, onShuffleQuestions,
   },
 ) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,6 +93,7 @@ export const Practices: React.FC<PracticesProps> = (
           data={data}
           onNavigatePractice={handleNavigatePractice}
           onResetPractices={onResetPractices}
+          onShuffleQuestions={onShuffleQuestions}
         />
       </Modal>
       {/* <div className="relative float-right" id="action-button-space"> */}
