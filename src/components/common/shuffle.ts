@@ -1,6 +1,6 @@
 /**
  * Fisher-Yates shuffle
- * Shuffles an array in place. ES6 version
+ * Shuffles an object in place. ES6 version
  * @see https://stackoverflow.com/a/6274381
  * @see https://bost.ocks.org/mike/shuffle/
  * @param questions object to shuffle
