@@ -2,6 +2,7 @@ import { useCallback, useEffect, useReducer } from 'react';
 import { useLocalStorageState } from '../common/local-storage.hook';
 import { OptionStatus, PracticeStatus, SelectionOption } from '../practice/practice';
 import { PracticesData } from './practices';
+import Shuffle from '../common/shuffle';
 
 const arrSame = (arrA: any[], arrB: any[]) => {
   const intersection = arrA.filter((x) => arrB.includes(x));
@@ -140,8 +141,12 @@ export const usePracticesWithLocalStorage = (id: string, initPractices: Practice
     setPractices({});
   };
 
+  const shuffleHandler = () => {
+    setStorage(Shuffle(practices));
+  };
+
   return [practices, {
-    handleSubmit, handleSelectionChange, setPractices, resetStorage,
+    handleSubmit, handleSelectionChange, setPractices, resetStorage, shuffleHandler,
   }] as const;
 };
 

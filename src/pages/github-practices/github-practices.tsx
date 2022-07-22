@@ -24,6 +24,7 @@ const GithubPractices: React.FC<GithubPracticesProps> = ({ githubLink }) => {
     handleSelectionChange,
     setPractices,
     resetStorage,
+    shuffleHandler,
   }] = usePracticesWithLocalStorage(link, {});
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const GithubPractices: React.FC<GithubPracticesProps> = ({ githubLink }) => {
       onSelectionChange={handleSelectionChange}
       baseImageURL={link}
       onResetPractices={resetStorage}
+      onShuffleQuestions={shuffleHandler}
     />
   );
 };

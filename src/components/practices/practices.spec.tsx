@@ -106,16 +106,19 @@ describe('Practices Component', () => {
 
     it('should reset practice if reset button is clicked', async () => {
       const resetHandler = jest.fn();
+      const shuffleHandler = jest.fn();
       renderWithRouterProvider(<Practices
         data={defaultPractices}
         onSubmit={mockedHandleSubmit}
         onSelectionChange={mockedHandleChange}
         onResetPractices={resetHandler}
+        onShuffleQuestions={shuffleHandler}
       />);
       const actionButton = screen.getByTestId('action-button');
       await userEvent.click(actionButton);
       await userEvent.click(screen.getByTestId('reset-button'));
       expect(resetHandler).toBeCalled();
+      expect(shuffleHandler).toBeCalled();
       // Test home button is working
       await userEvent.click(screen.getByTestId('homepage-button'));
     });

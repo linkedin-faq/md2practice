@@ -16,14 +16,21 @@ const RefreshSVG: React.FC = () => (
   </svg>
 );
 
+const ShuffleSVG: React.FC = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 tablet:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+  </svg>
+);
+
 interface InformationPanelProps {
     data: PracticesData
     onNavigatePractice: (id: number) =>void
     onResetPractices?: () => void
+    onShuffleQuestions?: () => void
 }
 
 const InformationPanel: React.FC<InformationPanelProps> = ({
-  data, onNavigatePractice, onResetPractices,
+  data, onNavigatePractice, onResetPractices, onShuffleQuestions,
 }) => {
   const navigate = useNavigate();
   const practiceItems = Object.values(data);
@@ -59,6 +66,9 @@ const InformationPanel: React.FC<InformationPanelProps> = ({
             <RefreshSVG />
           </button>
         ) : null}
+        <button className="p-1" type="button" data-testid="shuffle-button" onClick={onShuffleQuestions}>
+          <ShuffleSVG />
+        </button>
       </div>
       <div id="result-visualization">
         <div className="flex my-5 justify-around ">
