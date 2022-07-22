@@ -30,9 +30,9 @@ const App = () => {
 
   useEffect(() => {
     if (isConsent) {
-      if (DEV) {
+      if (DEV && GA_MEASUREMENT_ID) {
         ReactGA.initialize(GA_MEASUREMENT_ID, { gtagOptions: { debug_mode: true } });
-      } else {
+      } else if (!DEV) {
         ReactGA.initialize(GA_MEASUREMENT_ID);
       }
     }
