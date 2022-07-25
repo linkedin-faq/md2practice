@@ -39,7 +39,7 @@ jobs:
       - name: Build 👷
         run: yarn run build --base=${{ github.event.inputs.repository_name }}
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
           branch: gh-pages
           folder: dist
