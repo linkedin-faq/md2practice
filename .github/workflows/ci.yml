@@ -4,9 +4,8 @@ on:
   pull_request
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }}
     strategy:
       matrix:
         node-version: [17.x]
@@ -29,3 +28,15 @@ jobs:
         run: yarn run test
       - name: Build 👷
         run: yarn run build
+  auto-merge:
+    needs: ['tests']
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          target: minor
