@@ -27,7 +27,7 @@
     "recharts": "^2.1.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
+    "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "12.1.4",
