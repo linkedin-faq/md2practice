@@ -15,5 +15,6 @@ export default {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     '.*/markdown-content': '<rootDir>/src/components/common/__mocks__/markdown-content.tsx',
+    'axios': 'axios/dist/node/axios.cjs'
   },
 };
